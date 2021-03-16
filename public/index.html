@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="/node_modules/bulma/css/bulma.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
@@ -11,7 +15,43 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <nav class="navbar is-link ">
+        <div class="navbar-brand ">
+            <a class="navbar-item" href="#">
+                <H1 class="">TP - Visualizer</H1>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="#">Home</a>
+                <a class="navbar-item" href="#">Graphique</a>
+                <a class="navbar-item" href="#">Recherche</a>
+                <a class="navbar-item" href="#">Exporter JSON</a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <input class="input" type="text" placeholder="Faire une recherche">
+                </div>
+            </div>
+
+        </div>
+
+    </nav>
+
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <footer class="footer">
+        <p>Samir Massoundi</p>
+    </footer>
   </body>
 </html>
