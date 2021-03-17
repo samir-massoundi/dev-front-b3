@@ -1,10 +1,11 @@
 <template>
-  <p>Composant table.vue </p>
   <!-- <button v-on:click='importJson'>GET DATA</button>
   <p>{{ peopleList }}</p> -->
   <section class="section">
-    <p>{{peopleList.length}} Resultats</p>
-    <div class="container table-container">
+    <p>{{ peopleList.length }} Resultats</p>
+      <recherche @champs-recherche="filtre" />
+    <div class="container is-fluid table-container">
+
       <table class="table is-striped is-fullwidth is-hoverable">
         <thead>
           <tr>
@@ -69,7 +70,13 @@
           </li>
           <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
           <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-link" aria-label="Goto page `{{(peopleList.length)/10}}`">{{(peopleList.length)/10}}</a></li>
+          <li>
+            <a
+              class="pagination-link"
+              aria-label="Goto page `{{(peopleList.length)/10}}`"
+              >{{ peopleList.length / 10 }}</a
+            >
+          </li>
         </ul>
       </nav>
     </div>
@@ -77,23 +84,49 @@
 </template>
 
 <script>
+import recherche from './recherche.vue'
 export default {
-  name: "json",
+  name: "DataList",
+  components:{
+      recherche,
+
+  },
   data() {
-    return { peopleList: [] };
+    return { peopleList: [],   
+            inputRecherche:'',      
+             };
   },
   methods: {
     importJson() {
       console.log("hello");
     },
+
   },
   mounted() {
-    var requestURL =
-      "https://run.mocky.io/v3/70e5b0ad-7112-41c5-853e-b382a39e65b7";
+    var requestURL = "https://run.mocky.io/v3/70e5b0ad-7112-41c5-853e-b382a39e65b7";
     fetch(requestURL)
       .then((response) => response.json())
       .then((data) => (this.peopleList = data.people));
   },
+  computed:{
+     filtre(){
+         console.log('received');
+         console.log(this.test_value);
+        console.log(this.inputRecherche);
+
+        // let tempPeopleList = this.peopleList
+        // if (this.inputRecherche != '' && this.categorie != '')
+        // {
+        //     tempPeopleList = tempPeopleList.filter((person) => 
+        //     {
+        //         return person.firstname.includes(this.inputRecherche);
+        //     })
+        // }
+
+        // return tempPeopleList;
+        return 2;
+      }
+  }
 };
 </script>
 

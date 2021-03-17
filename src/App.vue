@@ -1,20 +1,20 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <navbar/>
-  <firstComponent msg="Projet developpement Front-end"/>
-  <json/>
+  <!-- <firstComponent msg="Projet developpement Front-end"/> -->
+  <DataList/>
 </template>
 
 <script>
-import FirstComponent from './components/FirstComponent.vue'
-import json from './components/json.vue'
+// import FirstComponent from './components/FirstComponent.vue'
+import DataList from './components/DataList.vue'
 import navbar from './components/navbar.vue'
 
 export default {
   name: 'App',
   components: {
-    FirstComponent,
-    json,
+    // FirstComponent,
+    DataList,
     navbar,
   }
 }
