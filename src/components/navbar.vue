@@ -1,18 +1,5 @@
 <template>
-   <!-- <nav class="navbar is-link nav">
-          
 
-
-        <div class="navbar-menu"  id="navMenu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="#">Home</a>
-                <a class="navbar-item" href="#">Graphiques</a>
-                <a class="navbar-item" href="#">Recherche</a>
-                <a class="navbar-item" href="#">Exporter JSON</a>
-            </div>
-
-        </div>
-    </nav> -->
 <nav class="navbar is-link nav">
     <div class="navbar-brand ">
          <a class="navbar-item" href="#">
@@ -30,7 +17,6 @@
     <div class="navbar-start is link">
         <a class="navbar-item" href="#">Home</a>
         <a class="navbar-item" href="#">Graphiques</a>
-        <a class="navbar-item" href="#">Recherche</a>
         <a class="navbar-item" href="#">Exporter JSON</a>
     </div>
 </div>

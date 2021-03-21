@@ -2,16 +2,21 @@
   <!-- <button v-on:click='importJson'>GET DATA</button>
   <p>{{ peopleList }}</p> -->
   <section class="section">
-    <p>{{ peopleList.length }} Resultats</p>
-      <recherche @champs-recherche="filtre" />
-    <div class="container is-fluid table-container">
+    <p>{{ $store.state._peopleList.length}} Resultats</p>
 
+    <!-- <p>{{$store.state._peopleList}}</p> -->
+
+    <recherche @champsrecherche="filteredList" v-model="arraySearch"/>
+
+    
+    <button @click="exportJSON">Exporter JSON</button>
+    <div class="container is-fluid table-container">
       <table class="table is-striped is-fullwidth is-hoverable">
         <thead>
           <tr>
             <!-- <th>id</th> -->
+            <th>Prenom</th>
             <th>Nom</th>
-            <th>Prénom</th>
             <th>Genre</th>
             <th>Mail</th>
             <th>Address</th>
@@ -26,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="person in peopleList" v-bind:key="person.id">
+          <tr v-for="person in filteredList" v-bind:key="person.id">
             <!-- <td>{{ person.id }}</td> -->
             <td>{{ person.firstname }}</td>
             <td>{{ person.lastname }}</td>
@@ -84,51 +89,68 @@
 </template>
 
 <script>
-import recherche from './recherche.vue'
+const fs = require("fs");
+import recherche from './recherche.vue';
 export default {
-  name: "DataList",
-  components:{
-      recherche,
-
-  },
+  name: 'dataList',
+  components: {
+    recherche,
+  }, 
   data() {
-    return { peopleList: [],   
-            inputRecherche:'',      
-             };
+    return {
+      peopleList: [],
+      arraySearch: '',
+    };
+  },
+  props:
+  {
+
   },
   methods: {
-    importJson() {
-      console.log("hello");
-    },
+    // filtrer(searchedWord, searchedField) {
+    //   console.log('we received the emit');
+    //   console.log(searchedWord);
+    //   console.log(searchedField);
 
+    //   let tempPeopleList = this.peopleList;
+
+    //   if (searchedWord != '' && searchedWord) {
+    //     tempPeopleList = tempPeopleList.filter((person) => {
+    //       return person.firstname
+    //         .toUpperCase()
+    //         .includes(searchedWord.toUpperCase());
+    //     });
+    //   }
+    //   return tempPeopleList;
+    // },
+    exportJson(){
+        let data = JSON.stringify(this.peopleList);
+        fs.writeFileSync("people.json", data);
+    }
   },
   mounted() {
-    var requestURL = "https://run.mocky.io/v3/70e5b0ad-7112-41c5-853e-b382a39e65b7";
+    var requestURL =
+      'https://run.mocky.io/v3/70e5b0ad-7112-41c5-853e-b382a39e65b7';
     fetch(requestURL)
       .then((response) => response.json())
       .then((data) => (this.peopleList = data.people));
   },
-  computed:{
-     filtre(){
-         console.log('received');
-         console.log(this.test_value);
-        console.log(this.inputRecherche);
-
-        // let tempPeopleList = this.peopleList
-        // if (this.inputRecherche != '' && this.categorie != '')
-        // {
-        //     tempPeopleList = tempPeopleList.filter((person) => 
-        //     {
-        //         return person.firstname.includes(this.inputRecherche);
-        //     })
-        // }
-
-        // return tempPeopleList;
-        return 2;
+  computed: {
+    filteredList() {
+        console.log("we receive");
+      let tempPeopleList = this.peopleList;
+        let i=2
+      if (i==2) {
+        tempPeopleList = tempPeopleList.filter((person) => {
+          return person.lastname.includes('');
+        });
       }
-  }
+      return tempPeopleList;
+    },
+
+
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

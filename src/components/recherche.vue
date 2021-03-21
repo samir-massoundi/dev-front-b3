@@ -2,7 +2,7 @@
   <div class="columns">
     <div class="column is-one-fifth">
       <div class="select is-rounded v-model-select">
-        <select v-model="categorie" @:change="recherche">
+        <select v-model="categorie" @change="recherche">
           <option disabled value="">Selectionnez une catégorie</option>
           <option>Nom</option>
           <option>Prénom</option>
@@ -20,30 +20,33 @@
       </div>
     </div>
     <div class="column ">
-      <input class="input is-primary is-rounded" v-model="inputRecherche" type="text" @keyup.enter="recherche" placeholder="Recherche"  />
+      <input
+        class="input is-primary is-rounded"
+        v-model="inputRecherche"
+        type="text"
+        @change="getElemRecherche"
+        placeholder="Recherche"
+      />
     </div>
   </div>
-  <p> Categorie selectionnée : {{ categorie }} </p>
-  <p> Recherche : {{ inputRecherche }} </p>
+  <p>Categorie selectionnée : {{ categorie }}</p>
+  <p>Recherche : {{ inputRecherche }}</p>
 </template>
 
 <script>
 export default {
   name: 'recherche',
   data() {
-    return { categorie: '',
-    inputRecherche: ''
-    };
+    return { categorie: '', inputRecherche: '' };
   },
-  methods:{
-      recherche(){
-        this.$emit('champs-recherche', this.inputRecherche );
-        console.log("we emit");
-      }
+  methods: {
+    getElemRecherche() {
+      this.$emit('champsrecherche', this.inputRecherche);
+      console.log('we emit');
+    },
   },
-  emits:[ 'champs-recherche']
+  emits: ['champsrecherche'],
 };
 </script>
 
-<style>
-</style>
+<style></style>
