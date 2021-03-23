@@ -2,7 +2,7 @@
   <section class="section">
     <p>{{ $store.state.filteredPeopleList.length }} Resultats</p>
 
-    <recherche @champsrecherche="filteredList" />
+    <!-- <recherche @champsrecherche="filteredList" /> -->
     <div class="container">
       <nav
         class="pagination is-centered"
@@ -69,11 +69,11 @@
 // const fs = require('fs');
 
 import { mapGetters, mapState } from 'vuex';
-import recherche from './recherche.vue';
+// import recherche from './recherche.vue';
 export default {
   name: 'dataList',
   components: {
-    recherche,
+    // recherche,
   },
   data() {
     return {
