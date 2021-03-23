@@ -6,12 +6,7 @@
           <option disabled value="">Selectionnez une catégorie</option>
           <option>Nom</option>
           <option>Prénom</option>
-          <option>Genre</option>
-          <option>Mail</option>
-          <option>Address</option>
-          <option>Ville</option>
           <option>Pays</option>
-          <option>Location</option>
           <option>Animal Favori</option>
           <option>Fruit Favori</option>
           <option>Couleur Favori</option>

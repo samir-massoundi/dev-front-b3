@@ -16,8 +16,12 @@ export default createStore({
           state.filteredPeopleList = filteredPeopleList;
       },
       RESET_FILTERED: (state) => {
-        state.filteredPeopleList = state.peopleList
-      }
+        state.filteredPeopleList = state.peopleList;
+      },
+      REPLACE_PERSON:(state) => (person) =>
+      {
+        state.peopleList.splice(person.id, 1, person);
+      } 
   },
   getters:
   {
@@ -27,13 +31,33 @@ export default createStore({
     },
     getPersonCount: (state) => {
         return state.peopleList.length
-    }
-    
+    },
+    getPeopleByFirstName: (state) => (input) => {
+        return state.peopleList.filter( (item) =>
+           {
+            item.firstname.toUpperCase().includes(input.toUpperCase())
+            }
+        )
+    },
+    getGenderStats: (state) => (paramGender) =>
+    {
+        return state.peopleList.filter( (item) => {
+            return item.gender.toUpperCase() == paramGender.toUpperCase()
+        }).length;
+    },
+    getAnimalStats: (state) => (paramAnimal) =>
+    {
+        return state.peopleList.filter( (item) => {
+            return item.preferences.favorite_pet.toUpperCase() == paramAnimal.toUpperCase()
+        }).length;
+    },
+
+
   },
   actions: {
     peopleListToStore (context) {
-        let requestURL = 'https://run.mocky.io/v3/70e5b0ad-7112-41c5-853e-b382a39e65b7';
-      fetch(requestURL)
+    let requestURL = 'https://run.mocky.io/v3/70e5b0ad-7112-41c5-853e-b382a39e65b7';    
+    fetch(requestURL)
         .then((response) => response.json())
         .then((data) => {
             context.commit("SET_PEOPLE_LIST", data.people);

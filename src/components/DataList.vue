@@ -3,12 +3,27 @@
     <p>{{ $store.state.filteredPeopleList.length }} Resultats</p>
 
     <recherche @champsrecherche="filteredList" />
+    <div class="container">
+      <nav
+        class="pagination is-centered"
+        role="navigation"
+        aria-label="pagination"
+      >
+        <a class="pagination-previous" @click="previousPage">Précédent</a>
 
+        <ul class="pagination-list">
+          <li>
+            <a class="pagination-link is-current">{{ currentPage }}</a>
+          </li>
+        </ul>
+        <a class="pagination-next" @click="nextPage">Suivant</a>
+      </nav>
+    </div>
     <div class="container is-fluid table-container">
       <table class="table is-striped is-fullwidth is-hoverable">
         <thead>
           <tr>
-            <th>id</th>
+            <!-- <th>id</th> -->
             <th>Prenom</th>
             <th>Nom</th>
             <th>Genre</th>
@@ -26,7 +41,7 @@
         </thead>
         <tbody>
           <tr v-for="person in pagination" v-bind:key="person.id">
-            <td>{{ person.id }}</td>
+            <!-- <td>{{ person.id }}</td> -->
             <td>{{ person.firstname }}</td>
             <td>{{ person.lastname }}</td>
             <td>{{ person.gender }}</td>
@@ -47,22 +62,6 @@
         </tbody>
       </table>
     </div>
-    <div class="container">
-      <nav
-        class="pagination is-centered"
-        role="navigation"
-        aria-label="pagination"
-      >
-        <a class="pagination-previous" @click="previousPage">Précédent</a>
-
-        <ul class="pagination-list">
-          <li>
-            <a class="pagination-link is-current">{{ currentPage }}</a>
-          </li>
-        </ul>
-        <a class="pagination-next" @click="nextPage">Suivant</a>
-      </nav>
-    </div>
   </section>
 </template>
 
@@ -79,7 +78,7 @@ export default {
   data() {
     return {
       arraySearch: '',
-      personPerPage: '10',
+      personPerPage: '5',
       currentPage: '1',
     };
   },
@@ -99,16 +98,18 @@ export default {
   },
   mounted() {},
   computed: {
+    ...mapGetters(['getPersonById', 'getPersonCount']),
+    ...mapState(['peopleList', 'filteredPeopleList']),
     filteredList(message) {
       console.log(message);
       return 0;
     },
-    ...mapGetters(['getPersonById', 'getPersonCount']),
-    ...mapState(['peopleList', 'filteredPeopleList']),
-    pagination()
-    {
-        return this.$store.state.peopleList.slice((this.currentPage - 1) * this.personPerPage, this.currentPage * this.personPerPage )
-    }
+    pagination() {
+      return this.$store.state.peopleList.slice(
+        (this.currentPage - 1) * this.personPerPage,
+        this.currentPage * this.personPerPage
+      );
+    },
   },
 };
 </script>
