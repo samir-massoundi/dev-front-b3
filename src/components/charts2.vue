@@ -12,13 +12,11 @@
 <script>
 import { mapGetters, mapState } from 'vuex';
 import Chart from 'chart.js';
-import planetChartData from '../assets/test-data.js';
 
 export default {
   name: 'charts2',
   data() {
     return {
-      planetChartData: planetChartData,
     };
   },
   computed: {

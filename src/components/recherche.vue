@@ -29,10 +29,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'recherche',
   data() {
     return { categorie: '', inputRecherche: '' };
+  },
+  computed:{
+    ...mapState(['peopleList']),
+
   },
   methods: {
     getElemRecherche() {

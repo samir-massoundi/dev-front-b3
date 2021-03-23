@@ -61,6 +61,17 @@ export default {
     exporterJSON() {
       console.log(this.$store.state.peopleList);
       
+
+      let dataStr = JSON.stringify({...this.$store.state.peopleList});
+      let dataUri =
+        "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+
+      let exportFileName = "list.json";
+
+      let dlElement = document.createElement("a");
+      dlElement.setAttribute("href", dataUri);
+      dlElement.setAttribute("download", exportFileName);
+      dlElement.click();
     },
   },
   computed: {
