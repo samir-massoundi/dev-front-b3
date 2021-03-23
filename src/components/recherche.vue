@@ -24,8 +24,7 @@
       />
     </div>
   </div>
-  <p>Categorie selectionnée : {{ categorie }}</p>
-  <p>Recherche : {{ inputRecherche }}</p>
+
 </template>
 
 <script>
